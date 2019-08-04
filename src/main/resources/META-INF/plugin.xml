@@ -1,0 +1,40 @@
+<idea-plugin>
+    <id>dev.liam_w.intellij.sasm-language</id>
+    <name>Sasm language support</name>
+    <vendor email="liam@liam-w.dev" url="https://liam-w.dev">Liam W</vendor>
+
+    <description><![CDATA[
+    Support for the sasm script, including syntax highlighting.
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="dev.liam_w.intellij.sasm_lang.SasmFileTypeFactory"/>
+        <fileType name="Sasm script" implementationClass="dev.liam_w.intellij.sasm_lang.SasmFileType" fieldName="INSTANCE"
+                  language="sasm" extensions="sasm"/>
+        <lang.parserDefinition language="sasm" implementationClass="dev.liam_w.intellij.sasm_lang.SasmParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="sasm" implementationClass="dev.liam_w.intellij.sasm_lang.SasmSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="dev.liam_w.intellij.sasm_lang.SasmColorSettingsPage"/>
+        <annotator language="sasm" implementationClass="dev.liam_w.intellij.sasm_lang.SasmAnnotator"/>
+        <psi.referenceContributor implementation="dev.liam_w.intellij.sasm_lang.SasmReferenceContributor"/>
+        <lang.refactoringSupport language="sasm" implementationClass="dev.liam_w.intellij.sasm_lang.SasmRefactoringSupportProvider"/>
+        <lang.elementManipulator forClass="dev.liam_w.intellij.sasm_lang.psi.SasmNamedElement" implementationClass="dev.liam_w.intellij.sasm_lang.SasmNamedElementManipulator" />
+        <lang.findUsagesProvider language="sasm" implementationClass="dev.liam_w.intellij.sasm_lang.SasmFindUsagesProvider"/>
+        <lang.foldingBuilder language="sasm" implementationClass="dev.liam_w.intellij.sasm_lang.SasmFoldingBuilder"/>
+        <gotoSymbolContributor implementation="dev.liam_w.intellij.sasm_lang.SasmChooseByNameContributor"/>
+        <lang.formatter language="sasm" implementationClass="dev.liam_w.intellij.sasm_lang.SasmFormattingModelBuilder"/>
+        <lang.commenter language="sasm" implementationClass="dev.liam_w.intellij.sasm_lang.SasmCommenter"/>
+        <lang.namesValidator language="sasm" implementationClass="dev.liam_w.intellij.sasm_lang.OperationNamesValidator" />
+        <completion.contributor language="sasm" implementationClass="dev.liam_w.intellij.sasm_lang.SasmCompletionContributor" />
+        <nameSuggestionProvider implementation="dev.liam_w.intellij.sasm_lang.SasmNameSuggestionProvider" />
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>

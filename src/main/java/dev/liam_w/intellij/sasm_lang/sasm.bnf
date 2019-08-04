@@ -1,0 +1,21 @@
+{
+  parserClass="dev.liam_w.intellij.sasm_lang.parser.SasmParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Sasm"
+  psiImplClassSuffix="Impl"
+  psiPackage="dev.liam_w.intellij.sasm_lang.psi"
+  psiImplPackage="dev.liam_w.intellij.sasm_lang.psi.impl"
+
+  elementTypeHolderClass="dev.liam_w.intellij.sasm_lang.psi.SasmTypes"
+  elementTypeClass="dev.liam_w.intellij.sasm_lang.psi.SasmElementType"
+  tokenTypeClass="dev.liam_w.intellij.sasm_lang.psi.SasmTokenType"
+
+  psiImplUtilClass="dev.liam_w.intellij.sasm_lang.psi.impl.SasmPsiImplUtil"
+}
+
+sasmFile ::= CRLF | COMMENT | operation*
+operation ::= (LABEL? OPERATION_IDENTIFIER operation_arg?) { mixin="dev.liam_w.intellij.sasm_lang.psi.impl.SasmNamedElementImpl"
+    implements="dev.liam_w.intellij.sasm_lang.psi.SasmNamedElement" methods=[getLabel getInstruction getName setName getNameIdentifier getPresentation] }
+operation_arg ::= IDENTIFIER | NUM { mixin="dev.liam_w.intellij.sasm_lang.psi.impl.SasmNamedElementImpl" implements="dev.liam_w.intellij.sasm_lang.psi.SasmNamedElement" methods=[getName setName getNameIdentifier getArgumentLabel] }
